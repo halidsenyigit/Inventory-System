@@ -15,7 +15,8 @@ namespace InventorySystem.Models {
         public DbSet<Kurum> Kurum { get; set; }
         public DbSet<Birim> Birim { get; set; }
         public DbSet<Transfer> Transfer { get; set; }
-
+        public DbSet<KullaniciYetkiRel> KullaniciYetkiRel { get; set; }
+        public DbSet<Yetki> Yetki { get; set; }
 
     }
 }
