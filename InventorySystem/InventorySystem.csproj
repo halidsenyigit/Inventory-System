@@ -158,11 +158,14 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Birim.cs" />
     <Compile Include="Models\Dagitim.cs" />
+    <Compile Include="Models\Kullanici.cs" />
+    <Compile Include="Models\KullaniciYetkiRel.cs" />
     <Compile Include="Models\Kurum.cs" />
     <Compile Include="Models\MalzemeBilgi.cs" />
     <Compile Include="Models\ModelContext.cs" />
     <Compile Include="Models\Stok.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\Yetki.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

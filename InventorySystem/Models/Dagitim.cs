@@ -21,5 +21,6 @@ namespace InventorySystem.Models
 
 
         public virtual Birim Birim { get; set; }
+        public virtual ICollection<Transfer> Transferler { get; set; }
     }
 }
