@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventorySystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,12 @@ namespace InventorySystem.Controllers
 {
     public class AdminController : Controller
     {
+        ModelContext db = new ModelContext();
+
         // GET: Admin
         public ActionResult Index()
         {
+            
             return View();
         }
     }

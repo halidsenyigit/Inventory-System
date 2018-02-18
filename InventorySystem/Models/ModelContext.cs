@@ -8,7 +8,13 @@ namespace InventorySystem.Models {
     public class ModelContext : DbContext {
         public ModelContext() : base("conn") { }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Kullanici { get; set; }
+        public DbSet<MalzemeBilgi> MalzemeBilgi { get; set; }
+        public DbSet<Stok> Stok { get; set; }
+        public DbSet<Dagitim> Dagitim { get; set; }
+        public DbSet<Kurum> Kurum { get; set; }
+        public DbSet<Birim> Birim { get; set; }
+        
 
     }
 }

@@ -156,7 +156,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Birim.cs" />
+    <Compile Include="Models\Dagitim.cs" />
+    <Compile Include="Models\Kurum.cs" />
+    <Compile Include="Models\MalzemeBilgi.cs" />
     <Compile Include="Models\ModelContext.cs" />
+    <Compile Include="Models\Stok.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -394,6 +399,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\FontAwesome.otf" />
