@@ -399,6 +399,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Profil.cshtml" />
+    <Content Include="Views\Shared\Partials\UserProfil.cshtml" />
+    <Content Include="Views\Shared\Partials\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

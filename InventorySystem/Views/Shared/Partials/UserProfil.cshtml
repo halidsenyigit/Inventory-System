@@ -1,0 +1,27 @@
+﻿@model InventorySystem.Models.Kullanici
+
+
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="~/admin-lte/img/user2-160x160.jpg" class="user-image" alt="User Image">
+        <span class="hidden-xs">@Model.Isim @Model.Soyisim</span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="user-header">
+            <img src="~/admin-lte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            <p>
+                @Model.Isim @Model.Soyisim
+                <small>@Model.Birim.Adi</small>
+            </p>
+        </li>
+
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="~/Account/Profil" class="btn btn-default btn-flat">Profil</a>
+            </div>
+            <div class="pull-right">
+                <a href="~/Account/Logout" class="btn btn-default btn-flat">Çıkış Yap</a>
+            </div>
+        </li>
+    </ul>
+</li>

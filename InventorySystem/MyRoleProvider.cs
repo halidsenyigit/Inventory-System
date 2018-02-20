@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventorySystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,9 @@ using System.Web.Security;
 namespace InventorySystem {
     public class MyRoleProvider : RoleProvider {
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        ModelContext db = new ModelContext();
+
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames) {
             throw new NotImplementedException();
@@ -29,7 +33,14 @@ namespace InventorySystem {
         }
 
         public override string[] GetRolesForUser(string username) {
-            throw new NotImplementedException();
+            var roles = db.KullaniciYetkiRel.Where(n => n.Kullanici.KullaniciAdi == username).ToList();
+            string[] res = new string[roles.Count];
+            int i = 0;
+            foreach (var item in roles)
+            {
+                res[i++] = item.Yetki.Role;
+            }
+            return res;
         }
 
         public override string[] GetUsersInRole(string roleName) {

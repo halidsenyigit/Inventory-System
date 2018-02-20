@@ -9,8 +9,8 @@ namespace InventorySystem.Models
     {
         public int YetkiID { get; set; }
         public string Adi { get; set; }
+        public string Role { get; set; }
 
-        
 
         public virtual ICollection<KullaniciYetkiRel> KullaniciYetkiRel { get; set; }
 

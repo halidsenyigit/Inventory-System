@@ -1,20 +1,20 @@
-﻿using System;
+﻿using InventorySystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
-namespace InventorySystem.Controllers
-{
-    public class AccountController : Controller
-    {
-        // GET: Account
-        public ActionResult Index()
-        {
+namespace InventorySystem.Controllers {
+    public class AccountController : Controller {
+        ModelContext db = new ModelContext();
+
+        public ActionResult Index() {
             if (User.Identity.IsAuthenticated) {
-                return RedirectToAction("index", "Admin");
+                return RedirectToAction("Index", "Admin");
             }
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
@@ -23,9 +23,29 @@ namespace InventorySystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(FormCollection data) {
+        public ActionResult Login(FormCollection f) {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("index");
 
+            string username = f.Get("username");
+            string password = f.Get("password");
+
+            if (db.Kullanici.Any(n => n.KullaniciAdi == username && n.Sifre == password)) {
+                FormsAuthentication.RedirectFromLoginPage(username, true);
+            }
+
+            ViewBag.Error = "Kullanıcı adı yada şifre hatalı";
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Profil() {
+            return View();
+        }
+
+        public ActionResult Logout() {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
         }
 
         [Authorize]
