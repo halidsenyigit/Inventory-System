@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace InventorySystem.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         ModelContext db = new ModelContext();
