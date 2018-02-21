@@ -10,8 +10,6 @@
         <h3 class="box-title">Malzeme Detayları</h3>
     </div>
     <div class="box-body">
-        @*MalzemeKodu,MalzemeAdi,MalzemeTanimi,OrijinalStokKodu,TeknikBilgi,AmbarYazilimKodu,Aciklama*@
-
         <dl class="dl-horizontal">
             <dt>
                 @Html.LabelFor(model => model.MalzemeKodu)
@@ -65,8 +63,10 @@
     </div>
 
     <div class="box-footer">
-        @Html.ActionLink("Bilgileri Güncelle", "Guncelle", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-info" })
-        @Html.ActionLink("Sil", "Sil", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-danger" })
+        @if (User.IsInRole("MB")) {
+            @Html.ActionLink("Bilgileri Güncelle", "Guncelle", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-info" })
+            @Html.ActionLink("Sil", "Sil", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-danger" })
+        }
         @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-flat btn-warning" })
     </div>
 </div>

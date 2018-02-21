@@ -20,10 +20,13 @@
 <div class="box box-success">
     <div class="box-header with-border">
         <h3 class="box-title">Malzeme Bilgi Tablosu</h3>
-        <div class="pull-right">
-            <a class="btn btn-success btn-flat" href="~/MalzemeBilgi/Ekle">Yeni Kayıt Ekle</a>
-        </div>
-        <br clear="all"/>
+        @if (User.IsInRole("MB")) {
+            <div class="pull-right">
+                @Html.ActionLink("Yeni Kayıt Ekle", "Ekle", null, new { @class = "btn btn-success btn-flat" })
+            </div>
+        }
+
+        <br clear="all" />
         @if (q != null) {
             <div class="callout callout-warning">
                 <h2><b class="text-red">@q</b> için arama sonuçları listeleniyor</h2>

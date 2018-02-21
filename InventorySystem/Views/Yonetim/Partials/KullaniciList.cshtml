@@ -1,0 +1,21 @@
+﻿@model IEnumerable<InventorySystem.Models.Kullanici>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>İsim Soyisim</th>
+            <th>Kullanıcı Adı</th>
+            <th>Birim</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.Isim @item.Soyisim</td>
+                <td>@item.KullaniciAdi</td>
+                <td>@item.Birim.Adi</td>
+            </tr>
+        }
+    </tbody>
+</table>

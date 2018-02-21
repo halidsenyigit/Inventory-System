@@ -155,6 +155,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\MalzemeBilgiController.cs" />
+    <Compile Include="Controllers\YonetimController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -442,10 +443,13 @@
     <Content Include="Views\MalzemeBilgi\Sil.cshtml" />
     <Content Include="Views\MalzemeBilgi\SilOnayla.cshtml" />
     <Content Include="Views\MalzemeBilgi\Ekle.cshtml" />
+    <Content Include="Views\Yonetim\Index.cshtml" />
+    <Content Include="Views\Yonetim\Partials\KullaniciList.cshtml" />
+    <Content Include="Views\Yonetim\Partials\KurumList.cshtml" />
+    <Content Include="Views\Yonetim\Partials\BirimList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\FontAwesome.otf" />

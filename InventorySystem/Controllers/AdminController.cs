@@ -12,8 +12,6 @@ namespace InventorySystem.Controllers
     {
         ModelContext db = new ModelContext();
 
-        // GET: Admin
-        [Authorize(Roles = "TR")]
         public ActionResult Index()
         {
             
