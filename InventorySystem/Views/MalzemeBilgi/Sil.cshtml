@@ -1,8 +1,55 @@
-﻿
+﻿@model IEnumerable<InventorySystem.Models.Stok>
+
 @{
     ViewBag.Title = "Sil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Sil</h2>
+<div class="box box-danger">
+    <div class="box-header with-border">
+        <h3 class="box-title">Silme İşlemini Onayla</h3>
+    </div>
 
+    <div class="box-body">
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Dikkat!</h4>
+            Silme işlemi durumunda bu malzeme ile ilişkili tüm stok verileri silinecektir.<br />
+            Aşağıda silinecek olan veriler listelenmektedir.
+        </div>
+
+        <br />
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Seri Numarası</th>
+                    <th>Malzeme Birim Bedeli</th>
+                    <th>Kurum</th>
+                    <th>Açıklama</th>
+                    <th>Garanti Başlangıç Tarihi</th>
+                    <th>Garanti Bitiş Tarihi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>@item.SeriNumarasi</td>
+                    <td>@item.MalzemeBirimBedeli</td>
+                    <td>@item.Kurum.Adi</td>
+                    <td>@item.Aciklama</td>
+                    <td>@item.GarantiTarihBaslangic.Year-@item.GarantiTarihBaslangic.Month-@item.GarantiTarihBaslangic.Day</td>
+                    <td>@item.GarantiTarihBitis.Year-@item.GarantiTarihBitis.Month-@item.GarantiTarihBitis.Day</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="box-footer">
+            @Html.ActionLink("Onayla", "SilOnayla", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-flat btn-danger" })
+            @Html.ActionLink("Malzeme Detaylarına Dön", "Detay", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-flat btn-info" })
+            @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-warning btn-flat" })
+        </div>
+    </div>
+</div>

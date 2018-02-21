@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Data.Entity;
 
 namespace InventorySystem.Controllers
 {
@@ -21,6 +22,25 @@ namespace InventorySystem.Controllers
             return View(mb.ToPagedList(sayfa, 20));
         }
 
+        [Authorize(Roles = "MB")]
+        [HttpGet]
+        public ActionResult Ekle() {
+            return View();
+        }
+
+        [Authorize(Roles = "MB")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Ekle([Bind(Include = "MalzemeKodu,MalzemeAdi,MalzemeTanimi,OrijinalStokKodu,TeknikBilgi,AmbarYazilimKodu,Aciklama")] MalzemeBilgi malzemeBilgi) {
+            
+            if (ModelState.IsValid) {
+                db.MalzemeBilgi.Add(malzemeBilgi);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(malzemeBilgi);
+        }
+
         public ActionResult Detay(int? id) {
             if (id == null)
                 RedirectToAction("Index");
@@ -30,22 +50,48 @@ namespace InventorySystem.Controllers
             return View(mb);
         }
 
+        [Authorize(Roles = "MB")]
+        [HttpGet]
         public ActionResult Guncelle(int? id) {
             if (id == null)
                 RedirectToAction("Index");
-
-            return View();
+            MalzemeBilgi mb = db.MalzemeBilgi.FirstOrDefault(n => n.MalzemeBilgiID == id);
+            return View(mb);
         }
 
+        [Authorize(Roles = "MB")]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Guncelle([Bind(Include = "MalzemeBilgiID,MalzemeKodu,MalzemeAdi,MalzemeTanimi,OrijinalStokKodu,TeknikBilgi,AmbarYazilimKodu,Aciklama")] MalzemeBilgi malzemeBilgi) {
+
+            if (ModelState.IsValid) {
+                db.Entry(malzemeBilgi).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(malzemeBilgi);
+        }
+
+
+        [Authorize(Roles = "MB")]
         public ActionResult Sil(int? id) {
             if (id == null)
                 RedirectToAction("Index");
 
-            return View();
+            List<Stok> iliskiliStoklar = db.Stok.Where(n => n.MalzemeBilgiID == id).ToList();
+            return View(iliskiliStoklar);
         }
 
-        public ActionResult SilOnayla() {
-            return RedirectToAction("Index");
+        [Authorize(Roles = "MB")]
+        public ActionResult SilOnayla(int? id) {
+            if (id == null)
+                RedirectToAction("Index", new { error = 1});
+
+            List<Stok> stoklar = db.Stok.Where(n => n.MalzemeBilgiID == id).ToList();
+            db.Stok.RemoveRange(stoklar);
+            db.MalzemeBilgi.Remove(db.MalzemeBilgi.FirstOrDefault(n => n.MalzemeBilgiID == id));
+            db.SaveChanges();
+            return RedirectToAction("Index", new { success = 1});
         }
 
     }

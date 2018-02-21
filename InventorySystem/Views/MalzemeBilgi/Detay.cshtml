@@ -1,8 +1,72 @@
-﻿
+﻿@model InventorySystem.Models.MalzemeBilgi
+
 @{
     ViewBag.Title = "Detay";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detay</h2>
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Malzeme Detayları</h3>
+    </div>
+    <div class="box-body">
+        @*MalzemeKodu,MalzemeAdi,MalzemeTanimi,OrijinalStokKodu,TeknikBilgi,AmbarYazilimKodu,Aciklama*@
 
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.LabelFor(model => model.MalzemeKodu)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeKodu)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.MalzemeAdi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeAdi)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.MalzemeTanimi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeTanimi)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.OrijinalStokKodu)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrijinalStokKodu)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.TeknikBilgi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TeknikBilgi)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.AmbarYazilimKodu)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AmbarYazilimKodu)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.Aciklama)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="box-footer">
+        @Html.ActionLink("Bilgileri Güncelle", "Guncelle", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-info" })
+        @Html.ActionLink("Sil", "Sil", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-danger" })
+        @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-flat btn-warning" })
+    </div>
+</div>

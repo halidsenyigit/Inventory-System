@@ -33,12 +33,10 @@
                 </div>
             </nav>
         </header>
-        
+
         @Html.Action("Menu", "Admin")
         <div class="content-wrapper">
-            <section class="content-header">
-
-            </section>
+            <section class="content-header"></section>
             <section class="content">
                 @RenderBody()
             </section>
@@ -56,6 +54,8 @@
     <script src="~/Scripts/jquery.slimscroll.min.js"></script>
     <script src="~/Scripts/fastclick.js"></script>
     <script src="~/admin-lte/js/adminlte.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.sidebar-menu').tree()

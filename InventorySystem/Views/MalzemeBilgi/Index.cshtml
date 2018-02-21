@@ -13,19 +13,41 @@
     }
 
     var q = Request.Params.Get("q");
+    var error = Request.Params.Get("error");
+    var success = Request.Params.Get("success");
 }
 
 <div class="box box-success">
     <div class="box-header with-border">
         <h3 class="box-title">Malzeme Bilgi Tablosu</h3>
+        <div class="pull-right">
+            <a class="btn btn-success btn-flat" href="~/MalzemeBilgi/Ekle">Yeni Kayıt Ekle</a>
+        </div>
+        <br clear="all"/>
         @if (q != null) {
             <div class="callout callout-warning">
                 <h2><b class="text-red">@q</b> için arama sonuçları listeleniyor</h2>
             </div>
         }
+
+        @if (error != null) {
+            <div class="callout callout-danger">
+                @if (error == "1") {
+                    <h2>Silme İşlemi sırasında hata oluştu</h2>
+                }
+            </div>
+        }
+
+        @if (success != null) {
+            <div class="callout callout-success">
+                @if (success == "1") {
+                    <h2>Silme İşlemi başarılı</h2>
+                }
+            </div>
+        }
     </div>
     <div class="box-body">
-        <table class="table">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>#.</th>
@@ -44,7 +66,9 @@
                     counter++;
                     <tr>
                         <td>@counter</td>
-                        <td>@item.MalzemeAdi</td>
+                        <td>
+                            @Html.ActionLink(item.MalzemeAdi, "Detay", new { id = item.MalzemeBilgiID })
+                        </td>
                         <td>@item.MalzemeKodu</td>
                         <td>@item.AmbarYazilimKodu</td>
                         <td>@item.MalzemeTanimi</td>
@@ -55,10 +79,8 @@
                 }
             </tbody>
         </table>
-
         <div class="pull-right">
             @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa, q }), PagedListRenderOptions.ClassicPlusFirstAndLast)
         </div>
-
     </div>
 </div>
