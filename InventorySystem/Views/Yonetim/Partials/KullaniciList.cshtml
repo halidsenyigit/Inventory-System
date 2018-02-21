@@ -1,11 +1,19 @@
-﻿@model IEnumerable<InventorySystem.Models.Kullanici>
+﻿@using PagedList
+@using PagedList.Mvc
 
+@model IEnumerable<InventorySystem.Models.Kullanici>
+
+@{
+    int? kurum = ViewBag.kurum;
+    int? birim = ViewBag.birim;
+}
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>İsim Soyisim</th>
             <th>Kullanıcı Adı</th>
             <th>Birim</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -15,7 +23,17 @@
                 <td>@item.Isim @item.Soyisim</td>
                 <td>@item.KullaniciAdi</td>
                 <td>@item.Birim.Adi</td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Düzenle", "KullaniciDuzenle", new { id = item.KullaniciID }, new { @class = "btn btn-flat btn-warning" })
+                        @Html.ActionLink("Sil", "KullaniciSil", new { id = item.KullaniciID }, new { @class = "btn btn-flat btn-danger" })
+                    </div>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="pull-right">
+    @Html.PagedListPager((IPagedList)Model, kullanici => Url.Action("Index", new { birim, kullanici, kurum }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>

@@ -447,6 +447,7 @@
     <Content Include="Views\Yonetim\Partials\KullaniciList.cshtml" />
     <Content Include="Views\Yonetim\Partials\KurumList.cshtml" />
     <Content Include="Views\Yonetim\Partials\BirimList.cshtml" />
+    <Content Include="Views\Yonetim\BirimEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

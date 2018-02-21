@@ -1,13 +1,18 @@
-﻿
+﻿@using PagedList
+@using PagedList.Mvc
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="col-md-12">
-    <div class="box box-success">
+    <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">Kullanıcı Yönetimi</h3>
+            <div class="pull-right">
+                @Html.ActionLink("Yeni Kullanıcı Ekle", "KullaniciEkle", null, new { @class = "btn btn-flat btn-success" })
+            </div>
         </div>
         <div class="box-body">
             @Html.Action("KullaniciList", "Yonetim")
@@ -16,9 +21,12 @@
 </div>
 
 <div class="col-md-6">
-    <div class="box box-success">
+    <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">Kurum Yönetimi</h3>
+            <div class="pull-right">
+                @Html.ActionLink("Yeni Kurum Ekle", "KurumEkle", null, new { @class = "btn btn-flat btn-success" })
+            </div>
         </div>
         <div class="box-body">
             @Html.Action("KurumList", "Yonetim")
@@ -27,12 +35,16 @@
 </div>
 
 <div class="col-md-6">
-    <div class="box box-success">
+    <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">Birim Yönetimi</h3>
-        </div>
-        <div class="box-body">
+            <div class="pull-right">
+                @Html.ActionLink("Yeni Birim Ekle", "BirimEkle", null, new { @class = "btn btn-flat btn-success" })
+            </div>
+        </div><div class="box-body">
             @Html.Action("BirimList", "Yonetim")
         </div>
     </div>
 </div>
+
+<br clear="all" />
