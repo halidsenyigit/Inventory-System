@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "SonIslemBilgisi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">İşlem Başarılı</h3>
+    </div>
+    <div class="box-body">
+
+        <div class="alert alert-success">
+            <h4><i class="icon fa fa-check"></i> Başarılı!</h4>
+            @if (ViewBag.info == 1) {
+                <h2>Yeni Kayıt Ekleme İşlemi Başarılı</h2>
+            }
+
+            @if (ViewBag.info == 2) {
+                <h2>Silme İşlemi Başarılı</h2>
+            }
+
+            @if (ViewBag.info == 3) {
+                <h2>Güncelleme İşlemi Başarılı</h2>
+            }
+        </div>
+    </div>
+</div>

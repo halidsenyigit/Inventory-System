@@ -13,8 +13,6 @@
     }
 
     var q = Request.Params.Get("q");
-    var error = Request.Params.Get("error");
-    var success = Request.Params.Get("success");
 }
 
 <div class="box box-success">
@@ -25,27 +23,10 @@
                 @Html.ActionLink("Yeni Kayıt Ekle", "Ekle", null, new { @class = "btn btn-success btn-flat" })
             </div>
         }
-
         <br clear="all" />
         @if (q != null) {
             <div class="callout callout-warning">
                 <h2><b class="text-red">@q</b> için arama sonuçları listeleniyor</h2>
-            </div>
-        }
-
-        @if (error != null) {
-            <div class="callout callout-danger">
-                @if (error == "1") {
-                    <h2>Silme İşlemi sırasında hata oluştu</h2>
-                }
-            </div>
-        }
-
-        @if (success != null) {
-            <div class="callout callout-success">
-                @if (success == "1") {
-                    <h2>Silme İşlemi başarılı</h2>
-                }
             </div>
         }
     </div>

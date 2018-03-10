@@ -13,6 +13,7 @@
             <th>İsim Soyisim</th>
             <th>Kullanıcı Adı</th>
             <th>Birim</th>
+            <th>Yetkiler</th>
             <th></th>
         </tr>
     </thead>
@@ -23,6 +24,11 @@
                 <td>@item.Isim @item.Soyisim</td>
                 <td>@item.KullaniciAdi</td>
                 <td>@item.Birim.Adi</td>
+                <td>
+                    @foreach (var yetki in item.KullaniciYetkiRel.ToList()) {
+                        <span class="label label-success">@yetki.Yetki.Adi</span>
+                    }
+                </td>
                 <td>
                     <div class="pull-right">
                         @Html.ActionLink("Düzenle", "KullaniciDuzenle", new { id = item.KullaniciID }, new { @class = "btn btn-flat btn-warning" })

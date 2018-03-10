@@ -12,6 +12,7 @@ namespace InventorySystem.Models
         [Key]
         public int KurumID { get; set; }
 
+        [Required(ErrorMessage = "Bu alan boş bırakılamaz")]
         public string Adi { get; set; }
 
         public virtual ICollection<Birim> Birimler { get; set; }

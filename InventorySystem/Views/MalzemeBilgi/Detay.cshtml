@@ -63,10 +63,15 @@
     </div>
 
     <div class="box-footer">
+        @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-flat btn-warning" })
+
         @if (User.IsInRole("MB")) {
             @Html.ActionLink("Bilgileri Güncelle", "Guncelle", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-info" })
+        }
+
+        @if (User.IsInRole("MB")) {
             @Html.ActionLink("Sil", "Sil", new { id = Model.MalzemeBilgiID }, new { @class = "btn btn-flat btn-danger" })
         }
-        @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-flat btn-warning" })
+
     </div>
 </div>

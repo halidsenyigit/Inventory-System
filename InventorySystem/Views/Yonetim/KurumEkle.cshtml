@@ -1,0 +1,35 @@
+﻿@model InventorySystem.Models.Kurum
+
+@{
+    ViewBag.Title = "KurumEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Yeni Kurum Ekle</h3>
+    </div>
+    <div class="box-body">
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Adi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Adi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Ekle" class="btn btn-flat btn-success" />
+                        @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-flat btn-warning" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

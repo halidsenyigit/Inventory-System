@@ -85,13 +85,13 @@ namespace InventorySystem.Controllers
         [Authorize(Roles = "MB")]
         public ActionResult SilOnayla(int? id) {
             if (id == null)
-                RedirectToAction("Index", new { error = 1});
+                RedirectToAction("Index");
 
             List<Stok> stoklar = db.Stok.Where(n => n.MalzemeBilgiID == id).ToList();
             db.Stok.RemoveRange(stoklar);
             db.MalzemeBilgi.Remove(db.MalzemeBilgi.FirstOrDefault(n => n.MalzemeBilgiID == id));
             db.SaveChanges();
-            return RedirectToAction("Index", new { success = 1});
+            return RedirectToAction("Index");
         }
 
     }

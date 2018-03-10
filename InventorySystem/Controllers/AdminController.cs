@@ -21,6 +21,13 @@ namespace InventorySystem.Controllers
         
 
 
+        public ActionResult SonIslemBilgisi(int info, string returnUrl, string msg = "") {
+            // info =>  1=eklendi, 2=silindi, 3=güncellendi
+            ViewBag.info = info;
+            
+            return View();
+        }
+
         public PartialViewResult UserProfil() {
             string username = User.Identity.Name;
             Kullanici user = db.Kullanici.First(n => n.KullaniciAdi == username);

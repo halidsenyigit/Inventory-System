@@ -17,10 +17,12 @@ namespace InventorySystem.Models
         [DataType(DataType.Date)]
         public DateTime Tarih { get; set; }
 
-        public int BirimID { get; set; }
+        public int BirimID { get; set; } // dağıtılacak birim
+        //public int StokID { get; set; } 
 
 
         public virtual Birim Birim { get; set; }
+        //public virtual Stok Stok { get; set; }
         public virtual ICollection<Transfer> Transferler { get; set; }
     }
 }

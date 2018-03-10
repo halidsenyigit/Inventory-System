@@ -9,7 +9,7 @@ namespace InventorySystem.Models
     {
         public int TransferID { get; set; }
 
-        public int BulunduguBirim { get; set; }
+        public int BulunduguBirim { get; set; } // bulunduğu kurum
         public int TransferEdilenBirim { get; set; }
         public DateTime Tarih { get; set; }
 

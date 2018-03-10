@@ -11,6 +11,7 @@
     <thead>
         <tr>
             <th>Birim Adı</th>
+            <th>Bağlı Kurum</th>
             <th></th>
         </tr>
     </thead>
@@ -19,6 +20,7 @@
         @foreach (var item in Model) {
             <tr>
                 <td>@item.Adi</td>
+                <td>@item.Kurum.Adi</td>
                 <td>
                     <div class="pull-right">
                         @Html.ActionLink("Düzenle", "BirimDuzenle", new { id = item.BirimID }, new { @class = "btn btn-flat btn-warning" })

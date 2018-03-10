@@ -18,6 +18,7 @@ namespace InventorySystem.Controllers {
             return View();
         }
 
+        // birim
         [HttpGet]
         public ActionResult BirimEkle() {
             ViewBag.KurumID = new SelectList(db.Kurum, "KurumID", "Adi");
@@ -37,6 +38,30 @@ namespace InventorySystem.Controllers {
 
 
 
+        // kurum
+        [HttpGet]
+        public ActionResult KurumEkle() {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult KurumEkle([Bind(Include = "Adi")] Kurum kurum) {
+            if (ModelState.IsValid) {
+                db.Kurum.Add(kurum);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(kurum);
+        }
+
+
+        //kullanici
+
+
+
+
+        // Partial lists
         public PartialViewResult KullaniciList(int kullanici = 1, int kurum = 1, int birim = 1) {
             ViewBag.birim = birim;
             ViewBag.kullanici = kullanici;
