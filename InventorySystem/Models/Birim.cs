@@ -20,5 +20,6 @@ namespace InventorySystem.Models
 
         public virtual Kurum Kurum { get; set; }
         public virtual ICollection<Dagitim> Dagitimlar { get; set; }
+        public virtual ICollection<Kullanici> Kullanicilar { get; set; }
     }
 }

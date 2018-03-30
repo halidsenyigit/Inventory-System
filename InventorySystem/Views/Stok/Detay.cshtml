@@ -1,0 +1,77 @@
+﻿@model InventorySystem.Models.Stok
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Stok Bilgisi Detayları</h3>
+    </div>
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.LabelFor(model => model.MalzemeBilgi.MalzemeAdi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeBilgi.MalzemeAdi)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.Kurum.Adi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Kurum.Adi)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.Adet)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Adet)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.MalzemeBirimBedeli)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeBirimBedeli)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.Aciklama)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.GarantiTarihBaslangic)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GarantiTarihBaslangic)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.GarantiTarihBitis)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GarantiTarihBitis)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="box-footer">
+        @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-flat btn-warning" })
+
+        @if (User.IsInRole("ST")) {
+            @Html.ActionLink("Bilgileri Güncelle", "Guncelle", new { id = Model.StokID }, new { @class = "btn btn-flat btn-info" })
+        }
+
+        @if (User.IsInRole("ST")) {
+            @Html.ActionLink("Sil", "Sil", new { id = Model.StokID }, new { @class = "btn btn-flat btn-danger" })
+        }
+
+    </div>
+</div>
