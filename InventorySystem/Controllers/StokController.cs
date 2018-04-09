@@ -2,6 +2,7 @@
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,7 +53,7 @@ namespace InventorySystem.Controllers {
             return View(stok);
         }
 
-
+        [Authorize(Roles = "ST")]
         public ActionResult Detay(int? id) {
             if (id == null)
                 return RedirectToAction("index");
@@ -75,7 +76,7 @@ namespace InventorySystem.Controllers {
             Kurum kurum = db.Kullanici.FirstOrDefault(n => n.KullaniciID == userID).Birim.Kurum;
             ViewBag.Kurum = kurum.Adi;
             ViewBag.MalzemeBilgi = stok.MalzemeBilgi.MalzemeAdi;
-            
+
             return View(stok);
         }
 
@@ -83,7 +84,7 @@ namespace InventorySystem.Controllers {
         [HttpPost]
         [Authorize(Roles = "ST")]
         [ValidateAntiForgeryToken]
-        public ActionResult Guncelle([Bind(Include = "MalzemeBilgiID,SeriNumarasi,GarantiTarihBaslangic,GarantiTarihBitis,MalzemeBirimBedeli,Adet,KurumID,Aciklama")] Stok stok) {
+        public ActionResult Guncelle([Bind(Include = "StokID,MalzemeBilgiID,SeriNumarasi,GarantiTarihBaslangic,GarantiTarihBitis,MalzemeBirimBedeli,Adet,KurumID,Aciklama")] Stok stok) {
             String username = User.Identity.Name;
             int userID = db.Kullanici.FirstOrDefault(n => n.KullaniciAdi == username).KullaniciID;
             Kurum kurum = db.Kullanici.FirstOrDefault(n => n.KullaniciID == userID).Birim.Kurum;
@@ -94,23 +95,56 @@ namespace InventorySystem.Controllers {
 
 
         [HttpPost]
-        public ActionResult GuncelleOnayla([Bind(Include = "MalzemeBilgiID,SeriNumarasi,GarantiTarihBaslangic,GarantiTarihBitis,MalzemeBirimBedeli,Adet,KurumID,Aciklama")] Stok stok) {
-            return View();
+        [Authorize(Roles = "ST")]
+        public ActionResult GuncelleOnayla([Bind(Include = "StokID,MalzemeBilgiID,SeriNumarasi,GarantiTarihBaslangic,GarantiTarihBitis,MalzemeBirimBedeli,Adet,KurumID,Aciklama")] Stok stok) {
+
+            String username = User.Identity.Name;
+            int userID = db.Kullanici.FirstOrDefault(n => n.KullaniciAdi == username).KullaniciID;
+            Kurum kurum = db.Kullanici.FirstOrDefault(n => n.KullaniciID == userID).Birim.Kurum;
+            ViewBag.Kurum = kurum.Adi;
+            ViewBag.MalzemeBilgi = db.MalzemeBilgi.FirstOrDefault(n => n.MalzemeBilgiID == stok.MalzemeBilgiID).MalzemeAdi;
+
+            Stok eski = db.Stok.FirstOrDefault(n => n.StokID == stok.StokID);
+            ViewBag.SeriNumarasi = eski.SeriNumarasi;
+            ViewBag.GarantiTarihBaslangic = eski.GarantiTarihBaslangic;
+            ViewBag.GarantiTarihBitis = eski.GarantiTarihBitis;
+            ViewBag.MalzemeBirimBedeli = eski.MalzemeBirimBedeli;
+            ViewBag.Adet = eski.Adet;
+            ViewBag.Aciklama = eski.Aciklama;
+
+            return View(stok);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ST")]
+        public ActionResult GuncelleOnayli([Bind(Include = "StokID,MalzemeBilgiID,SeriNumarasi,GarantiTarihBaslangic,GarantiTarihBitis,MalzemeBirimBedeli,Adet,KurumID,Aciklama")] Stok stok) {
+            String username = User.Identity.Name;
+            int userID = db.Kullanici.FirstOrDefault(n => n.KullaniciAdi == username).KullaniciID;
+            stok.KurumID = db.Kullanici.FirstOrDefault(n => n.KullaniciID == userID).Birim.Kurum.KurumID;
+            if (ModelState.IsValid) {
+                db.Entry(stok).State = EntityState.Modified;
+                db.SaveChanges();
+            } else {
+                return Content("hata oluştu");
+            }
+            return RedirectToAction("Detay", new { id = stok.StokID });
+        }
 
 
         [Authorize(Roles = "ST")]
         public ActionResult Sil(int? id) {
+            Stok stok = db.Stok.FirstOrDefault(n => n.StokID == id);
             if (id == null)
                 RedirectToAction("Index");
 
 
-            return View();
+            return View(stok);
         }
 
         [Authorize(Roles = "ST")]
         public ActionResult SilOnayla(int? id) {
+            
             if (id == null)
                 RedirectToAction("Index");
 

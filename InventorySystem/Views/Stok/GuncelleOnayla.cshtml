@@ -1,0 +1,156 @@
+﻿@model InventorySystem.Models.Stok
+
+@{
+    ViewBag.Title = "Guncellemeyi Onayla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">@ViewBag.MalzemeBilgi</h3>
+    </div>
+
+    <div class="box-body">
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                <h4>Eski Bilgiler</h4>
+                <hr />
+
+                <table class="table table-hover table-inverse">
+                    <tr>
+                        <td>Seri Numarası</td>
+                        <td>@ViewBag.SeriNumarasi</td>
+                    </tr>
+
+                    <tr>
+                        <td>Garanti Başlangıç Tarihi</td>
+                        <td>@ViewBag.GarantiTarihBaslangic.ToString("dd.MM.yyyy")</td>
+                    </tr>
+
+                    <tr>
+                        <td>Garanti Bitiş Tarihi</td>
+                        <td>@ViewBag.GarantiTarihBitis.ToString("dd.MM.yyyy")</td>
+                    </tr>
+
+                    <tr>
+                        <td>Malzeme Birim Bedeli</td>
+                        <td>@ViewBag.MalzemeBirimBedeli</td>
+                    </tr>
+
+                    <tr>
+                        <td>Adet</td>
+                        <td>@ViewBag.Adet</td>
+                    </tr>
+
+                    <tr>
+                        <td>Açıklama</td>
+                        <td>@ViewBag.Aciklama</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("GuncelleOnayli", "Stok")) {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Yeni Bilgiler</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StokID)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MalzemeBilgiID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select class="form-control" disabled>
+                                <option>
+                                    @ViewBag.MalzemeBilgi
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="MalzemeBilgiID" value="@Model.MalzemeBilgiID" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SeriNumarasi, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SeriNumarasi, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.SeriNumarasi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="SeriNumarasi" value="@Model.SeriNumarasi" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GarantiTarihBaslangic, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GarantiTarihBaslangic, new { htmlAttributes = new { @class = "form-control", type = "date", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.GarantiTarihBaslangic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="GarantiTarihBaslangic" value="@Model.GarantiTarihBaslangic" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GarantiTarihBitis, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GarantiTarihBitis, new { htmlAttributes = new { @class = "form-control", type = "date", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.GarantiTarihBitis, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="GarantiTarihBitis" value="@Model.GarantiTarihBitis" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MalzemeBirimBedeli, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MalzemeBirimBedeli, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.MalzemeBirimBedeli, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="MalzemeBirimBedeli" value="@Model.MalzemeBirimBedeli" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Adet, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Adet, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Adet, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="Adet" value="@Model.Adet" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.KurumID, htmlAttributes: new { @class = "control-label col-md-2", disabled = "disabled" })
+                        <div class="col-md-10">
+                            <select class="form-control" disabled>
+                                <option>
+                                    @ViewBag.Kurum
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="KurumID" value="@Model.KurumID" />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Aciklama, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Aciklama, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="Aciklama" value="@Model.Aciklama" />
+
+                    <div class="box-footer">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Onayla ve Güncelle" class="btn btn-success btn-flat" />
+                            @Html.ActionLink("Vazgeç", "Index", null, new { @class = "btn btn-warning btn-flat" })
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

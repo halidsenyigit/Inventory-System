@@ -1,0 +1,89 @@
+﻿@model InventorySystem.Models.Stok
+
+@{
+    ViewBag.Title = "Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-danger">
+    <div class="box-header with-border">
+        <h3 class="box-title">Silme İşlemini Onayla</h3>
+    </div>
+
+    <div class="box-body">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Kurum.Adi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Kurum.Adi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MalzemeBilgi.MalzemeKodu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeBilgi.MalzemeKodu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SeriNumarasi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SeriNumarasi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GarantiTarihBaslangic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GarantiTarihBaslangic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GarantiTarihBitis)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GarantiTarihBitis)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MalzemeBirimBedeli)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MalzemeBirimBedeli)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adet)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adet)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+
+        </dl>
+
+        <div class="box-footer">
+            @Html.ActionLink("Onayla", "SilOnayla", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-flat btn-danger" })
+            @Html.ActionLink("Stok Detaylarına Dön", "Detay", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-flat btn-info" })
+            @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-warning btn-flat" })
+        </div>
+
+    </div>
+</div>

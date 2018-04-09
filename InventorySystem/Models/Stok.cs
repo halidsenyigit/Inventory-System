@@ -18,10 +18,12 @@ namespace InventorySystem.Models
 
         [Display(Name = "Garanti Başlangıç Tarihi")]
         [Required(ErrorMessage = "Bu alan boş bırakılamaz")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime GarantiTarihBaslangic { get; set; }
 
         [Display(Name = "Garanti Bitiş Tarihi")]
         [Required(ErrorMessage = "Bu alan boş bırakılamaz")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime GarantiTarihBitis { get; set; }
 
         [Display(Name = "Malzeme Birim Bedeli")]

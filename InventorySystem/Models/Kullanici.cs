@@ -16,7 +16,7 @@ namespace InventorySystem.Models
         public string Sifre { get; set; }
         
 
-        public int? BirimID { get; set; }
+        public int BirimID { get; set; }
 
 
         public virtual Birim Birim { get; set; }
