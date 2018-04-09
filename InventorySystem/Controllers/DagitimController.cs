@@ -17,7 +17,7 @@ namespace InventorySystem.Controllers
         public ActionResult Index(int sayfa = 1, string q = "")
         {
             int birimID = db.Kullanici.FirstOrDefault(n => n.KullaniciAdi == User.Identity.Name).BirimID;
-            var dagitim = db.Dagitim.Where(n => n.BirimID == birimID && (n.EvrakSayi.Contains(q)));
+            var dagitim = db.Dagitim.Where(n => n.BirimID == birimID && (n.EvrakSayi.Contains(q))).ToList();
 
             return View(dagitim.ToPagedList(sayfa, 20));
         }

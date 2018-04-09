@@ -1,0 +1,72 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<InventorySystem.Models.Transfer>
+
+@{
+    ViewBag.Title = "Transfer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int counter = 0;
+    if (Request.Params.Get("sayfa") != null && !Convert.ToInt32(Request.Params.Get("sayfa")).Equals(1)) {
+        counter = 20 * (Convert.ToInt32(Request.Params.Get("sayfa")) - 1);
+    }
+
+    var q = Request.Params.Get("q");
+}
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Transfer Bilgi Tablosu</h3>
+        @if (User.IsInRole("MB")) {
+            <div class="pull-right">
+                @Html.ActionLink("Yeni Kayıt Ekle", "Ekle", null, new { @class = "btn btn-success btn-flat" })
+            </div>
+        }
+        <br clear="all" />
+        @if (q != null) {
+            <div class="callout callout-warning">
+                <h2><b class="text-red">@q</b> için arama sonuçları listeleniyor</h2>
+            </div>
+        }
+    </div>
+    <div class="box-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#.</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Dagitim.EvrakSayi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BulunduguBirim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TransferEdilenBirim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tarih)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model) {
+                    counter++;
+                    <tr>
+                        <td>@counter</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dagitim.EvrakSayi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BulunduguBirim)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TransferEdilenBirim)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tarih)
+                        </td>
+                    </tr>
+                }
+
+        </table>
+    </div>
+</div>

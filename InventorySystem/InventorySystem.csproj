@@ -157,6 +157,7 @@
     <Compile Include="Controllers\DagitimController.cs" />
     <Compile Include="Controllers\MalzemeBilgiController.cs" />
     <Compile Include="Controllers\StokController.cs" />
+    <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Controllers\YonetimController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -458,10 +459,11 @@
     <Content Include="Views\Stok\Guncelle.cshtml" />
     <Content Include="Views\Stok\GuncelleOnayla.cshtml" />
     <Content Include="Views\Stok\Sil.cshtml" />
+    <Content Include="Views\Dagitim\Index.cshtml" />
+    <Content Include="Views\Transfer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Dagitim\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\FontAwesome.otf" />
